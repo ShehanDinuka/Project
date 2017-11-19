@@ -21,9 +21,7 @@
 <body>
 	<form>
 
-		<button type="button" name="home" onclick="location.href='Index.php'">Home</button>
-		<button type="button" name="register" onclick="location.href='Register.php'">Register</button>
-		<button type="button" name="profile" onclick="location.href='Profile.php'">Profile</button>
+		<button type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
 		<fieldset>
 			<h1>Personal Information</h1>
 			Name: <?php echo $final["fname"] ?> <?php echo $final["lname"] ?> <img src="myphoto.jpg" alt="Your Photo"><br> 
