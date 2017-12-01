@@ -1,66 +1,41 @@
-<?php
-
-	require 'App/User.php'; 
-
-	if(isset($_POST['register'])) {
-
-		$new_user = new User();
-		$new_user->addUser($_POST);
-	}
-?>
-
 <!DOCTYPE html>
+
 <html>
-
 <head>
-
-	<title>Register New Member</title>
-
+	<title>Admin Profile</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	-->
 </head>
 
 <body>
 
-	<script type="text/javascript">
+	<form method="post">
+		<div class="container">
+			<br><br>
+			<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-4" align="right">
+			<input type="text" name="search" placeholder="Search Members Using ID" class="form-control"><br>
+			</div>
+			<div class="col">
+			<input type="submit" name="" id="search" value="Search"  class="col-md-2 btn "><br>
+			</div>
+			</div>
+		</div>	
+		</form>
 		
-		function check_empty() {
-				
-			if (document.getElementById("fname").value == "" || document.getElementById("lname").value == "" || document.getElementById("reg_no").value == "" || document.getElementById("age").value == "" || document.getElementById("dob").value == "" || document.getElementById("address").value == "" || document.getElementById("tel_no").value == "") {
+		<form  method="post">
+<?php
 
-				document.getElementById("register").disabled = true;
-			}
-
-			else document.getElementById("register").disabled = false;
-		}	
-		setInterval(check_empty, 0);
-
-	</script>
-
-	<form action="Register.php" method="post">
-
-		<?php
-	
-			if (isset($_POST['register'])) {
-				
-				echo "New Entry added successfully";
-			}
-
-		?>
+		if(isset($_POST['search'])&&($_POST['search']!="")){
+			$index='Index.php';
 		
-		
-		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
+		echo ('<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
 		<p>
 		<div class= "nav nav-tabs">
-		<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
+		<button class="btn " type="button" name="home" onclick="location.href='.$index.'">Home</button><p>
 		</div>
 	
 		<p>
@@ -122,10 +97,21 @@
 		<p>
 		<p>
 		<div class="container">
-		<input type="submit" class="btn " name="register" id="register" value="Register" disabled="disabled" class =" col-md-2 col-md-offset-2">
+		<input type="submit" class="btn " name="register" id="register" value="Register"  class =" col-md-2 col-md-offset-2">
 		<br><br></div>
-		</div>
+		</div>') ;
+		
+		
+	}
+?>
+
 	</form>
+
+
+
+
+
+
 
 </body>
 
