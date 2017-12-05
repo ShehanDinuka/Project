@@ -10,14 +10,30 @@
 		$userid = $_SESSION['username'];
 		$final = $load_user->getUser($userid);
 		
+		$sql="select * from logins where reg_no={$_POST['username']}";
+		 $db =new DB();
+		 $disp = mysqli_query($db->getConnection(), $sql);
+		 $result = mysqli_fetch_array($disp, MYSQLI_ASSOC);
+		
 	}
 	if (isset($_SESSION['username'])){
+		//echo $_SESSION['username'];
 		$load_user = new User();	
 		$userid = $_SESSION['username'];
 		$final = $load_user->getUser($userid);
+		
+		 $sql="select * from logins where reg_no={$_SESSION['username']}";
+		 $db =new DB();
+		 $disp = mysqli_query($db->getConnection(), $sql);
+		 echo $disp;
+		 if($disp){
+			$result = mysqli_fetch_array($disp, MYSQLI_ASSOC);
+		 }
+	
 	}
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -37,16 +53,20 @@
 </head>
 
 <body>
-	<form>
+	<form method="post">
+		
 		<div class="container-fluid" style="background-color:#3D3F40 ;background-size: cover" class="text-white">
-		<br><div class="container">
-		<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
-		</div>
+		<br><nav class="navbar navbar-inverse"><div class="container" >
+		<!--<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button>--><p><br><div class ="col-md-8"></div>
+		<button class="btn " type="submit" name="logout" <?php if(isset($_POST['logout'])){ session_destroy(); header('Location:Index.php');} ?>>Log Out</button>
+		</div></nav>
+		
 		<div class="container"  style="background-color: #0B8581 ;border:1px solid " >
 		<fieldset><div class="container"style="background-color:	#39E5E0">
 			<h1 >Personal Information</h1><p></div>
 			<div class="row"><div class="col-md-2">
-			<label  class="text-white" >Name </label></div><div class="col"><label  class="text-white" >:* 	<?php echo $final["fname"] ?> <?php echo $final["lname"] ?></label></div> <div class="col"><img src="myphoto.jpg" alt="Your Photo"><br> </div></div>
+			<label  class="text-white" >Name </label></div><div class="col"><label  class="text-white" >:* 	<?php echo $final["fname"] ?> <?php echo $final["lname"] ?></label></div> 
+			<div class="col"><img src="Images/<?php echo $result['images']; ?>" alt="Your Photo"><br> </div></div>
 			<div class="row"><div class="col-md-2">
 			<label  class="text-white" >Reg No </label></div><div class="col"><label  class="text-white" >:* 	<?php echo $final["reg_no"] ?><br></label></div></div>
 			<div class="row"><div class="col-md-2">

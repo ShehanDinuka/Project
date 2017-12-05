@@ -1,3 +1,4 @@
+<?php require 'App/User.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +47,7 @@
 	<fieldset><p><div class="row" ><div class="col-md-4 "></div><div class="col-md-4 ">
 	<img src="myorg.jpg" alt="Logo" class="img-responsive"></div></div><p>
 	</fieldset>
-	<form action="Profile.php" method="post" class="container-fluid">
+	<form action="" method="post" class="container-fluid">
 	
 	<div class="col ;container-fluid">
 		<fieldset >
@@ -89,3 +90,19 @@
 </body>
 
 </html>
+
+<?php
+
+	if(isset($_POST['username'])&&($_POST['username']!="")) {
+		
+		$load_user = new User();
+		$userid = $_POST['username'];
+		$final = $load_user->getUser($userid);
+		
+		if($final){
+				session_start();
+				$_SESSION['username']= $_POST['username'];
+				header('Location:Profile.php');
+				}
+	}
+?>

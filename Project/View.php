@@ -1,3 +1,7 @@
+<?php session_start();
+	require 'App/User.php';
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -10,102 +14,113 @@
 </head>
 
 <body>
-
-	<form method="post">
-		<div class="container">
+<div class="container-fluid" style="background-color: 	#3C102E">
+	
+	<form method="post" action="">
+	<nav class="navbar navbar-inverse navbar-fixed-top"><div class="container-fluid">
+	<div class ="col-md-11"></div><div class ="col-md-1">
+		<button class="btn " type="submit" name="logout" <?php if(isset($_POST['logout'])){ session_destroy(); header('Location:Index.php');} ?>>Log Out</button>
+	</div></div></nav>
+		<div class="container-fluid" style="background-color: 	#3C102E"">
+			
+			 <h4 align="center" class="text-white"><br><br>You have logged as an Administrator</h4>
 			<br><br>
 			<div class="row">
-			<div class="col-md-3"></div>
+			<div class="col-md-4"></div>
 			<div class="col-md-4" align="right">
 			<input type="text" name="search" placeholder="Search Members Using ID" class="form-control"><br>
 			</div>
 			<div class="col">
-			<input type="submit" name="" id="search" value="Search"  class="col-md-2 btn "><br>
+			<input class="btn btn-default" type="submit" name="" id="search" value="Search"  class="col-md-2 btn "><br>
 			</div>
 			</div>
+			
+			
 		</div>	
-		</form>
+			
+	</form>
 		
-		<form  method="post">
-<?php
+		
+		<?php
 
 		if(isset($_POST['search'])&&($_POST['search']!="")){
-			$index='Index.php';
+			
+			$load_user = new User();
+			$userid = $_POST['search'];
+			$final = $load_user->getUser($userid);
+			
+			if($final){
+				$_SESSION['search']= $_POST['search'];
+				header('Location:Result.php');
+				}
 		
-		echo ('<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
-		<p>
-		<div class= "nav nav-tabs">
-		<button class="btn " type="button" name="home" onclick="location.href='.$index.'">Home</button><p>
-		</div>
+		}
+		
+		
 	
-		<p>
+		echo '<div class ="container-fluid"  style="background-color: 	#3C102E" >
 		
-		<div class ="container"  style="background-color: 	#787878" >
-		<fieldset><div  class ="container"  style="background-color: 	#b4b4b4" ><h1>Personal Information</h1><hr /></div><p>
-		<p>
-			<div  class="row"><div class="col-md-2">
-			<label for="fname" class="text-white" >First Name :*</label>
-			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-4"><img alt="Your Photo"><p>
-			</div></div>
-			<div class="row"><div class="col-md-2">
-			<label for="lname" class="text-white" >Last Name :*</label> </div><div class="col-md-4"> <input type="text" name="lname" id="lname" placeholder="Enter your last name"  class="form-control"><br>
-			</div></div>
-			<div  class="row"><div class="col-md-2">
-			<label for="RegNo" class="text-white" >Reg No :*</label></div><div class="col-md-4"> <input type="text" name="reg_no" id="reg_no" placeholder="Enter your registration no."  class="form-control"><br>
-			</div></div>
-			<div  class="row"><div class="col-md-2">
-			<label for="age" class="text-white" >Age :*</label></div><div class="col-md-4"><input type="text" name="age" id="age" placeholder="Enter your age"  class="form-control"><br>
-			</div></div>
-			<div  class="row"><div class="col-md-2">
-			<label for="dob" class="text-white" >Date Of Birth :*</label></div><div class="col-md-4"><input type="text" name="dob" id="dob" placeholder="yyyy-mm-dd"  class="form-control">
-			</div></div>
-		<p>
-		</fieldset>
-		</div>
+		 <h4 align="center" class="text-white"><br><br><br><br></h4>
 		
-		<div class ="container"   style="background-color: 	#787878"><p>
-		<fieldset><div   class ="container-fluid"  style="background-color: #b4b4b4"><h1 >Contact Details</h1><hr /></div>
-		<p>
-			<div class="row"><div class="col-md-2">
-			<label for="address" class="text-white" >Address :*</label></div><div class="col-md-4">  <textarea name="address" id="address" rows="5" class="form-control"></textarea><br>
-			</div></div>
-			<div class="row"><div class="col-md-2">
-			<label for="tel" class="text-white" >Tell No :*</label></div><div class="col-md-4"> <input type="tel" name="tel_no" id="tel_no" class="form-control"><br>
-			</div></div>
-			<div class="row"><div class="col-md-2">
-			<label for="email" class="text-white" >Email Address :*</label></div><div class="col-md-4"> <input type="email" name="email" placeholder="username@example.com" class="form-control">
-			</div></div>
-		<p>
-		</fieldset>
-		</div>
-		<p>
-		<div class ="container"   style="background-color: 	#787878"><p>
-		<fieldset><div  class ="container-fluid"  style="background-color: #b4b4b4"><h1>Performance</h1><hr /></div>
-		<p>
-		<div class="row"><div class="col-md-2">
-		<label for="achs" class="text-white" >Achievements :*</label></div><div class="col-md-4"> <textarea name="achs" class="form-control"></textarea><br>
-		</div></div>
-		<div class="row"><div class="col-md-2">
-		<label for="services" class="text-white" >Services :*</label></div><div class="col-md-4" > <textarea name="services" class="form-control"></textarea ><br>
-		</div></div>
-		<div class="row"><div class="col-md-2">	
-		<label for="donations" class="text-white" >Donations :*</label></div><div class="col-md-4"> <textarea name="donations" class="form-control"></textarea ><br>
-		</div></div>
-		
-		</fieldset><p>
-		</div>
-		<p>
-		<p>
-		<div class="container">
-		<input type="submit" class="btn " name="register" id="register" value="Register"  class =" col-md-2 col-md-offset-2">
-		<br><br></div>
-		</div>') ;
-		
-		
-	}
+		</div>';
+	
 ?>
 
-	</form>
+<form  method="post">
+	
+<?php
+	$db = new DB();
+
+	$query="SELECT COUNT(*) FROM requests where accepted=0";
+	if($query_run=mysqli_query($db->getConnection(),$query)){
+		$count =1;
+		while($query_execute=mysqli_fetch_assoc($query_run)){
+		if($query_execute['COUNT(*)']==0){
+			echo "<br><br><div class='container text-black' style='background-color: #b4b4b4'><div class='row' ><div class='col-md-5'></div><div class='col-md-4'>"."<label class='btn' style='background-color: #b4b4b4'><h5 align='center'>No New Requests</h5></label>"."</div></div></div><br><br><br><br><br>";
+			$count=0;
+		}
+	}
+		if($count){
+		$query="SELECT * FROM requests where accepted=0";
+		$query_run=mysqli_query($db->getConnection(),$query);
+		
+		$table ='<div class="container"><table class="table table-bordered table-info "><thead><tr><th>Name</th><th>Username</th><th>Accept</th></tr></thead><tbody>';
+		
+		while($results=mysqli_fetch_assoc($query_run)){
+			
+		$table .= "<tr class='table-active'><td><label class='lable'>{$results['reg_no']}</label></td><td><label class='label'>{$results['fname']}"."  "."{$results['lname']}</label></td><td>
+		<label class='label'><input type='radio' name='{$results['reg_no']}'  value='accept'>	Accept		 "."<input type='radio' name='{$results['reg_no']}'  value='reject'>	Reject 		"."<input type='radio' name='{$results['reg_no']}'  value='keep' checked>	Keep </label>"
+		
+		."</td></tr>";
+	
+		}
+		$table .= "</tbody></table></div><br><br>";
+		$table.='<div class="row"><div class="col-md-9"></div><div class="col-md-3"><input type="submit" class="btn btn-align-right " name="save" id="save" value="Save changers"  class =" col-md-2 col-md-offset-2"></div></div>';
+		echo $table;
+		}
+	}
+
+?>				
+			
+</form>
+		<br><br><br>
+</div>		
+	
+	<?php
+		if(isset($_POST['save'])){
+			$db = new DB();
+			$query="SELECT * FROM requests where accepted=0";
+			$query_run=mysqli_query($db->getConnection(),$query);
+			while($results=mysqli_fetch_assoc($query_run)){
+				if (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="accept"){ echo "Accept";}
+				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="reject"){ echo "Reject";}
+				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="keep"){ echo "Keep";}
+				
+			}
+			
+			
+			
+		}
 
 
 
@@ -113,6 +128,11 @@
 
 
 
-</body>
-
+?>
+	
+	
+	</body>
 </html>
+
+
+

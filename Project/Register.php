@@ -6,6 +6,30 @@
 
 		$new_user = new User();
 		$new_user->addUser($_POST);
+		$new_user->addRequests($_POST);
+		
+		
+			$db = new DB();
+            $sql = "INSERT INTO logins values (?,?,?)";
+			$imgFile = $_FILES['image']['name'];
+			$target = "Images/".basename($_FILES['image']['name']);
+			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION));
+			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); 
+           
+		   $state = mysqli_prepare($db->getConnection(), $sql);
+           $state->bind_param ("sss",$_POST['reg_no'],$_POST['password'],$imgFile);
+           $state->execute();
+		   $result = mysqli_query($db->getConnection(), $sql);
+		  
+		  if(in_array($imgExt, $valid_extensions)){
+							
+			move_uploaded_file($_FILES['image']['tmp_name'],$target);						
+						}else{
+						$sql="Update logins set images='' where reg_no ='".$_POST['reg_no']."'"	;
+						$result = mysqli_query($db->getConnection(), $sql);
+							
+		  
+						}
 	}
 ?>
 
@@ -19,6 +43,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="main.css">
 
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	
@@ -34,7 +59,7 @@
 		
 		function check_empty() {
 				
-			if (document.getElementById("fname").value == "" || document.getElementById("lname").value == "" || document.getElementById("reg_no").value == "" || document.getElementById("age").value == "" || document.getElementById("dob").value == "" || document.getElementById("address").value == "" || document.getElementById("tel_no").value == "") {
+			if (document.getElementById("fname").value == "" || document.getElementById("password").value == "" || document.getElementById("lname").value == "" || document.getElementById("reg_no").value == "" || document.getElementById("age").value == "" || document.getElementById("dob").value == "" || document.getElementById("address").value == "" || document.getElementById("tel_no").value == "") {
 
 				document.getElementById("register").disabled = true;
 			}
@@ -45,8 +70,15 @@
 
 	</script>
 
-	<form action="Register.php" method="post">
+	<form action="Register.php" method="post" enctype="multipart/form-data">
 
+		
+		
+		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
+		<p>
+		<div class= "nav nav-tabs">
+		<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
+		<div class="col-md-4"></div> <div class="col text-white"><label>
 		<?php
 	
 			if (isset($_POST['register'])) {
@@ -54,13 +86,7 @@
 				echo "New Entry added successfully";
 			}
 
-		?>
-		
-		
-		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
-		<p>
-		<div class= "nav nav-tabs">
-		<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
+		?></label></div>
 		</div>
 	
 		<p>
@@ -70,13 +96,17 @@
 		<p>
 			<div  class="row"><div class="col-md-2">
 			<label for="fname" class="text-white" >First Name :*</label>
-			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-4"><img alt="Your Photo"><p>
+			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-2 text-white" ><span><label for="" class="">Upload Your Image :*</label></div><div class="col-md-4">
+			<input type ="file" class="btn btn-default btn-file" name="image"  id="imgup" placeholder='Choose a file...' alt="Your Photo"></span><p>
 			</div></div>
 			<div class="row"><div class="col-md-2">
 			<label for="lname" class="text-white" >Last Name :*</label> </div><div class="col-md-4"> <input type="text" name="lname" id="lname" placeholder="Enter your last name"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
 			<label for="RegNo" class="text-white" >Reg No :*</label></div><div class="col-md-4"> <input type="text" name="reg_no" id="reg_no" placeholder="Enter your registration no."  class="form-control"><br>
+			</div></div>
+			<div  class="row"><div class="col-md-2">
+			<label for="age" class="text-white" >Password :*</label></div><div class="col-md-4"><input type="text" name="password" id="password" placeholder="Enter your Password"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
 			<label for="age" class="text-white" >Age :*</label></div><div class="col-md-4"><input type="text" name="age" id="age" placeholder="Enter your age"  class="form-control"><br>
@@ -126,6 +156,8 @@
 		<br><br></div>
 		</div>
 	</form>
+	
+	
 
 </body>
 
