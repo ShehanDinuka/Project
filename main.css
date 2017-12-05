@@ -1,0 +1,23 @@
+.int-img{
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top :2%;
+
+}
+
+
+.ab { 
+    display: block;
+    margin-left: 200px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove (internal value);
+}
+
+.imgup{
+	
+	display : none;
+}
