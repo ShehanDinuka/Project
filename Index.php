@@ -1,4 +1,19 @@
 <?php require 'App/User.php'; ?>
+<?php
+
+	if(isset($_POST['username'])&&($_POST['username']!="")) {
+		
+		$load_user = new User();
+		$userid = $_POST['username'];
+		$final = $load_user->getUser($userid);
+		
+		if($final){
+				session_start();
+				$_SESSION['username']= $_POST['username'];
+				header('Location:Profile.php');
+				}
+	}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -92,7 +107,7 @@ body {font-family: Verdana,sans-serif;}
 
 </head>
 
-<body style="background-image: url('bbb.jpg') ">
+<body style="background-image: url('bbb.jpg')">
 
 	<script type="text/javascript">
 		function check_empty() {				
@@ -172,7 +187,10 @@ body {font-family: Verdana,sans-serif;}
 							</div>
 					</div>
 				</fieldset>
-		<div class="slideshow-container">
+			</div>
+			</form>
+		
+<div class="slideshow-container">
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
@@ -228,19 +246,5 @@ function showSlides() {
 
 </html>
 
-<?php
 
-	if(isset($_POST['username'])&&($_POST['username']!="")) {
-		
-		$load_user = new User();
-		$userid = $_POST['username'];
-		$final = $load_user->getUser($userid);
-		
-		if($final){
-				session_start();
-				$_SESSION['username']= $_POST['username'];
-				header('Location:Profile.php');
-				}
-	}
-?>
 
