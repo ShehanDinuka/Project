@@ -9,7 +9,7 @@ class DB
 
     private $connection;
 
-    public function __construct($server="localhost", $username="root", $password="root", $database="project"){
+    public function __construct($server="localhost", $username="root", $password="", $database="project"){
 
         $this->connection = new mysqli($server, $username, $password, $database);
 
