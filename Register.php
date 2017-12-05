@@ -9,24 +9,24 @@
 		$new_user->addRequests($_POST);
 		
 		
-			$db = new DB();
-            $sql = "INSERT INTO logins values (?,?,?)";
+		  $db = new DB();
+          $sql = "INSERT INTO logins (reg_no, password) values (?,?)";
 			$imgFile = $_FILES['image']['name'];
-			$target = "Images/".basename($_FILES['image']['name']);
 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION));
+			$target = "Images/".basename($_POST['reg_no']).".".$imgExt;
 			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); 
            
-		   $state = mysqli_prepare($db->getConnection(), $sql);
-           $state->bind_param ("sss",$_POST['reg_no'],$_POST['password'],$imgFile);
-           $state->execute();
-		   $result = mysqli_query($db->getConnection(), $sql);
+		  $state = mysqli_prepare($db->getConnection(), $sql);
+          $state->bind_param("ss",$_POST['reg_no'],$_POST['password']);
+          $state->execute();
+		  $result = mysqli_query($db->getConnection(), $sql);
 		  
 		  if(in_array($imgExt, $valid_extensions)){
 							
 			move_uploaded_file($_FILES['image']['tmp_name'],$target);						
 						}else{
-						$sql="Update logins set images='' where reg_no ='".$_POST['reg_no']."'"	;
-						$result = mysqli_query($db->getConnection(), $sql);
+						//$sql="Update logins set images='' where reg_no ='".$_POST['reg_no']."'"	;
+						//$result = mysqli_query($db->getConnection(), $sql);
 							
 		  
 						}
@@ -95,24 +95,24 @@
 		<fieldset><div  class ="container"  style="background-color: 	#b4b4b4" ><h1>Personal Information</h1><hr /></div><p>
 		<p>
 			<div  class="row"><div class="col-md-2">
-			<label for="fname" class="text-white" >First Name :*</label>
-			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-2 text-white" ><span><label for="" class="">Upload Your Image :*</label></div><div class="col-md-4">
+			<label for="fname" class="text-white" >First Name :<font color="red">*</font></label>
+			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-2 text-white" ><span><label for="" class="">Upload Your Image :</label></div><div class="col-md-4">
 			<input type ="file" class="btn btn-default btn-file" name="image"  id="imgup" placeholder='Choose a file...' alt="Your Photo"></span><p>
 			</div></div>
 			<div class="row"><div class="col-md-2">
-			<label for="lname" class="text-white" >Last Name :*</label> </div><div class="col-md-4"> <input type="text" name="lname" id="lname" placeholder="Enter your last name"  class="form-control"><br>
+			<label for="lname" class="text-white" >Last Name :<font color="red">*</font></label> </div><div class="col-md-4"> <input type="text" name="lname" id="lname" placeholder="Enter your last name"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
-			<label for="RegNo" class="text-white" >Reg No :*</label></div><div class="col-md-4"> <input type="text" name="reg_no" id="reg_no" placeholder="Enter your registration no."  class="form-control"><br>
+			<label for="RegNo" class="text-white" >Reg No :<font color="red">*</font></label></div><div class="col-md-4"> <input type="text" name="reg_no" id="reg_no" placeholder="Enter your registration no."  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
-			<label for="age" class="text-white" >Password :*</label></div><div class="col-md-4"><input type="text" name="password" id="password" placeholder="Enter your Password"  class="form-control"><br>
+			<label for="age" class="text-white" >Password :<font color="red">*</font></label></div><div class="col-md-4"><input type="text" name="password" id="password" placeholder="Enter your Password"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
-			<label for="age" class="text-white" >Age :*</label></div><div class="col-md-4"><input type="text" name="age" id="age" placeholder="Enter your age"  class="form-control"><br>
+			<label for="age" class="text-white" >Age :<font color="red">*</font></label></div><div class="col-md-4"><input type="text" name="age" id="age" placeholder="Enter your age"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
-			<label for="dob" class="text-white" >Date Of Birth :*</label></div><div class="col-md-4"><input type="text" name="dob" id="dob" placeholder="yyyy-mm-dd"  class="form-control">
+			<label for="dob" class="text-white" >Date Of Birth :<font color="red">*</font></label></div><div class="col-md-4"><input type="text" name="dob" id="dob" placeholder="yyyy-mm-dd"  class="form-control">
 			</div></div>
 		<p>
 		</fieldset>
@@ -122,18 +122,21 @@
 		<fieldset><div   class ="container-fluid"  style="background-color: #b4b4b4"><h1 >Contact Details</h1><hr /></div>
 		<p>
 			<div class="row"><div class="col-md-2">
-			<label for="address" class="text-white" >Address :*</label></div><div class="col-md-4">  <textarea name="address" id="address" rows="5" class="form-control"></textarea><br>
+			<label for="address" class="text-white" >Address :<font color="red">*</font></label></div><div class="col-md-4">  <textarea name="address" id="address" rows="5" class="form-control"></textarea><br>
 			</div></div>
 			<div class="row"><div class="col-md-2">
-			<label for="tel" class="text-white" >Tell No :*</label></div><div class="col-md-4"> <input type="tel" name="tel_no" id="tel_no" class="form-control"><br>
+			<label for="tel" class="text-white" >Tell No :<font color="red">*</font></label></div><div class="col-md-4"> <input type="tel" name="tel_no" id="tel_no" class="form-control"><br>
 			</div></div>
 			<div class="row"><div class="col-md-2">
-			<label for="email" class="text-white" >Email Address :*</label></div><div class="col-md-4"> <input type="email" name="email" placeholder="username@example.com" class="form-control">
+			<label for="email" class="text-white" >Email Address :</label></div><div class="col-md-4"> <input type="email" name="email" placeholder="username@example.com" class="form-control">
 			</div></div>
 		<p>
 		</fieldset>
 		</div>
 		<p>
+		
+		
+		<!--
 		<div class ="container"   style="background-color: 	#787878"><p>
 		<fieldset><div  class ="container-fluid"  style="background-color: #b4b4b4"><h1>Performance</h1><hr /></div>
 		<p>
@@ -148,7 +151,7 @@
 		</div></div>
 		
 		</fieldset><p>
-		</div>
+		</div> -->
 		<p>
 		<p>
 		<div class="container">

@@ -21,3 +21,12 @@
 	
 	display : none;
 }
+
+.img-fluid {
+  max-width: 50;
+  height: 50;
+}
+
+.required {
+	font-color: red;
+}

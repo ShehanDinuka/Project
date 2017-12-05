@@ -61,9 +61,10 @@
 			 <label for="usr" class="text-white" >User Name :</label></div><div class="col">
 			<input type="text" name="username" id="username" placeholder="Username" class="form-control"></div>
 			<div class="col">
-			<select class="btn">
+			<select name="select" class="btn">
 				<option value="member" selected="selected">Member</option>
-				<option value="officer">Officer</option>
+				<option value="registrar">Registrar</option>
+				<option value="secretary">Secretary</option>
 				<option value="admin">Administrator</option>
 			</select>
 			</div></div><br>
@@ -99,10 +100,34 @@
 		$userid = $_POST['username'];
 		$final = $load_user->getUser($userid);
 		
-		if($final){
+		$db = new DB ();
+		$sql="select *from logins where reg_no='{$_POST['username']}'";
+		$result = mysqli_query($db->getConnection(), $sql);
+		
+		if($result){
+			
+			$myquery="select *from requests where reg_no='{$_POST['username']}'";
+			echo $_POST['username'];
+			$res = mysqli_query($db->getConnection(), $myquery);
+			
+			$myquery1="select access from logins where reg_no='{$_POST['username']}'";
+			$disp = mysqli_query($db->getConnection(), $myquery1);
+			 $res1 = mysqli_fetch_array($disp, MYSQLI_ASSOC);
+			
+			if((mysqli_num_rows($res)==0) && (($_POST['select'])=='member') && ($res1['access']=='M')){
+				
 				session_start();
 				$_SESSION['username']= $_POST['username'];
 				header('Location:Profile.php');
 				}
+				elseif((mysqli_num_rows($res)==0)&& (($_POST['select'])=='registrar') && ($res1['access']=='R')){
+					
+				session_start();
+				$_SESSION['username']= $_POST['username'];
+				header('Location:View.php');
+				}
+		}
+		
+		
 	}
 ?>

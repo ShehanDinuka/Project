@@ -6,7 +6,7 @@
 
 <html>
 <head>
-	<title>Admin Profile</title>
+	<title>Registrar Profile</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,7 +23,7 @@
 	</div></div></nav>
 		<div class="container-fluid" style="background-color: 	#3C102E"">
 			
-			 <h4 align="center" class="text-white"><br><br>You have logged as an Administrator</h4>
+			 <h4 align="center" class="text-white"><br><br>You have logged in as a Registrar</h4>
 			<br><br>
 			<div class="row">
 			<div class="col-md-4"></div>
@@ -96,6 +96,7 @@
 		}
 		$table .= "</tbody></table></div><br><br>";
 		$table.='<div class="row"><div class="col-md-9"></div><div class="col-md-3"><input type="submit" class="btn btn-align-right " name="save" id="save" value="Save changers"  class =" col-md-2 col-md-offset-2"></div></div>';
+		//header("Refresh:0");
 		echo $table;
 		}
 	}
@@ -111,12 +112,33 @@
 			$db = new DB();
 			$query="SELECT * FROM requests where accepted=0";
 			$query_run=mysqli_query($db->getConnection(),$query);
-			while($results=mysqli_fetch_assoc($query_run)){
-				if (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="accept"){ echo "Accept";}
-				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="reject"){ echo "Reject";}
-				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="keep"){ echo "Keep";}
+			
+			
+			while($results=$query_run->fetch_assoc()){				
+				if (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="accept"){ 
+				
+				
+				$sql="DELETE FROM requests WHERE requests.reg_no = '{$results['reg_no']}'";
+				$sl=mysqli_query($db->getConnection(),$sql);
+				
+				
+				}
+				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="reject"){
+				$sql ="DELETE FROM requests WHERE requests.reg_no = '{$results['reg_no']}'";
+				$sl=mysqli_query($db->getConnection(),$sql);
+				
+				$sql ="DELETE FROM logins WHERE logins.reg_no = '{$results['reg_no']}'";
+				$sl=mysqli_query($db->getConnection(),$sql);
+				
+				$sql ="DELETE FROM members WHERE members.reg_no = '{$results['reg_no']}'";
+				$sl=mysqli_query($db->getConnection(),$sql);
+
+				}
+				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="keep"){}
+				
 				
 			}
+
 			
 			
 			
@@ -129,6 +151,23 @@
 
 
 ?>
+			<script type='text/javascript'>
+
+			(function()
+			{
+			  if( window.localStorage )
+			  {
+				if( !localStorage.getItem( 'firstLoad' ) )
+				{
+				  localStorage[ 'firstLoad' ] = true;
+				  window.location.reload();
+				}  
+				else
+				  localStorage.removeItem( 'firstLoad' );
+			  }
+			})();
+
+			</script>
 	
 	
 	</body>
