@@ -5,10 +5,17 @@
 	
 	if (isset($_SESSION['username'])) {
 
+		$db= new DB();
+
 		$load_user = new User();		
 		$userid = $_SESSION['username'];
 		$final = $load_user->getUser($userid);
 		
+
+	$pw="select *from logins where reg_no='{$_SESSION['username']}'";
+	$disp = mysqli_query($db->getConnection(), $pw);	
+	$result = mysqli_fetch_array($disp, MYSQLI_ASSOC);
+
 	}
 
 ?>
@@ -31,7 +38,7 @@
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
+
 </head>
 
 <body>
@@ -44,7 +51,9 @@
 		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
 		<p>
 		<div class= "">
+
 		<button class="btn " type="button" name="" onclick="location.href='Profile.php'"><span class="glyphicon glyphicon-chevron-left"></span> Profile</button><p>
+
 		</div>
 	
 		<p>
@@ -63,6 +72,12 @@
 			<label for="RegNo" class="text-white" >Reg No :*</label></div><div class="col-md-4"> <input type="text" name="reg_no" value="<?php echo $final["reg_no"] ?>" id="reg_no" placeholder="Enter your registration no."  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
+
+			<label for="password" class="text-white" >Password :*</label></div><div class="col-md-4"> <input type="text" name="password" value="<?php if(isset($_POST['save'])){echo $_POST['password'];}else{echo $result["password"]; }?>" id="password" placeholder="Enter your Password no."  class="form-control"><br>
+			</div></div>
+			
+			<div  class="row"><div class="col-md-2">
+
 			<label for="age" class="text-white" >Age :*</label></div><div class="col-md-4"><input type="text" name="age" id="age" value="<?php if(isset($_POST['save'])){echo $_POST["age"];}else{echo $final["age"] ;}?>" placeholder="Enter your age"  class="form-control"><br>
 			</div></div>
 			<div  class="row"><div class="col-md-2">
@@ -92,7 +107,9 @@
 		
 	
 		<div class="container">
+
 		<input type="submit" class="btn " name="save" id="save" value="Save"  class =" col-md-2 col-md-offset-2" >
+
 		<br><br></div>
 		</div>
 	</form>
@@ -106,7 +123,9 @@
 			
 			$db = new DB;
 			$sql ="UPDATE members set  fname=? ,lname=?, age=? ,dob=? ,address=? ,tel_no=? , email=? 
-					where reg_no={$_SESSION['username']} ";
+
+					where reg_no='{$_SESSION['username']}' ";
+
 			
 			$state = mysqli_prepare($db->getConnection(), $sql);
             $state->bind_param("ssissss",  $_POST['fname'], $_POST['lname'], $_POST['age'], $_POST['dob'], $_POST['address'], $_POST['tel_no'], $_POST['email']);
@@ -114,5 +133,10 @@
             
             $result = mysqli_query($db->getConnection(), $sql);
 			
+
+		$pass ="UPDATE logins set password= '{$_POST['password']}' where reg_no= '{$_SESSION['username']}'";
+		$result = mysqli_query($db->getConnection(), $pass);
+			
+
 		}
 ?>

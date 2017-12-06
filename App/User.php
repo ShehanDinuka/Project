@@ -27,6 +27,8 @@
             $state->execute();
             
             $result = mysqli_query($db->getConnection(), $sql);
+			
+			
         }
 		
 		public function addRequests($req){
@@ -34,12 +36,24 @@
 			$sql = "INSERT INTO requests VALUES (?,?,?,?,0)";
 			
 			$state = mysqli_prepare($db->getConnection(), $sql);
-			$state->bind_param ("isss",$req['reg_no'],$req['fname'],$req['lname'],$req['password']);
+			$state->bind_param ("ssss",$req['reg_no'],$req['fname'],$req['lname'],$req['password']);
 			$state->execute();
 			
 			$result = mysqli_query($db->getConnection(), $sql);
 		}
 		
+		 public function addLogins($data){
+
+            $db = new DB();
+            $sql = "INSERT INTO logins values (?,?,?)";
+           
+		   $state = mysqli_prepare($db->getConnection(), $sql);
+           $state->bind_param ("sss",$data['reg_no'],$data['password'],$data['image']);
+           $state->execute();
+		   
+		   $result = mysqli_query($db->getConnection(), $sql);
+        }
+
 		 public function getRequests($id){
 
             $db = new DB();
