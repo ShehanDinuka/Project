@@ -52,7 +52,8 @@
 		<p>
 		<div class= "">
 
-		<button class="btn " type="button" name="" onclick="location.href='Profile.php'"> <span class="glyphicon glyphicon-circle-arrow-left"></span> To Profile</button><p>
+		<button class="btn " type="button" name="" onclick="location.href='Profile.php'"><span class="glyphicon glyphicon-chevron-left"></span> Profile</button><p>
+
 
 		</div>
 	
