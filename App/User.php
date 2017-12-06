@@ -53,18 +53,7 @@
 		   
 		   $result = mysqli_query($db->getConnection(), $sql);
         }
-		
-		public function addRequests($req){
-			$db =new DB();
-			$sql = "INSERT INTO requests VALUES (?,?,?,?,0)";
-			
-			$state = mysqli_prepare($db->getConnection(), $sql);
-			$state->bind_param ("isss",$req['reg_no'],$req['fname'],$req['lname'],$req['password']);
-			$state->execute();
-			
-			$result = mysqli_query($db->getConnection(), $sql);
-		}
-		
+
 		 public function getRequests($id){
 
             $db = new DB();
