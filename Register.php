@@ -20,7 +20,11 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="main.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	
@@ -51,10 +55,10 @@
 
 		
 		
-		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
+		<div class="container-fluid" style="border:1px solid;background-image: url('back0.jpg')" >
 		<p>
 		<div class= "nav nav-tabs">
-		<button class="btn " type="button" name="home" onclick="location.href='Index.php'">Home</button><p>
+		<button class="btn"  type="button" name="home" onclick="location.href='Index.php'"><span class="glyphicon glyphicon-home"></span> Home</button><p>
 		<div class="col-md-4"></div> <div class="col text-white"><label>
 		<?php
 	
@@ -128,7 +132,7 @@
 		<p>
 		<p>
 		<div class="container">
-		<input type="submit" class="btn " name="register" id="register" value="Register" disabled="disabled" class =" col-md-2 col-md-offset-2">
+		<input type="submit" class="btn " name="register" id="register" value="Register" disabled="disabled" class =" col-md-2 col-md-offset-2" style="background-color:#DC143C">
 		<br><br></div>
 		</div>
 	</form>

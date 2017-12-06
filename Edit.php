@@ -24,7 +24,9 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -38,7 +40,7 @@
 		<div class="container-fluid" style="border:1px solid;background-color:#3C102E" >
 		<p>
 		<div class= "">
-		<button class="btn " type="button" name="" onclick="location.href='Profile.php'"><< Back to Profile</button><p>
+		<button class="btn " type="button" name="" onclick="location.href='Profile.php'"> <span class="glyphicon glyphicon-circle-arrow-left"></span> To Profile</button><p>
 		</div>
 	
 		<p>
@@ -85,7 +87,7 @@
 		
 	
 		<div class="container">
-		<input type="submit" class="btn " name="save" id="save" value="Save"  class =" col-md-2 col-md-offset-2">
+		<input type="submit" class="btn " name="save" id="save" value="Save"  class =" col-md-2 col-md-offset-2" >
 		<br><br></div>
 		</div>
 	</form>
