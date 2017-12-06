@@ -88,6 +88,11 @@ body {font-family: Verdana,sans-serif;}
   animation-name: fade;
   animation-duration: 1.5s;
 }
+#transparent {
+    opacity: 0.7;
+
+}
+
 
 @-webkit-keyframes fade {
   from {opacity: .4} 
@@ -103,11 +108,11 @@ body {font-family: Verdana,sans-serif;}
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
-</style>	
 
+</style>	
 </head>
 
-<body style="background-image: url('bbb.jpg')">
+<body style="background-image: url('back11.jpg')">
 
 	<script type="text/javascript">
 		function check_empty() {				
@@ -119,41 +124,30 @@ body {font-family: Verdana,sans-serif;}
 		setInterval(check_empty, 0);
 	</script>
 	
-	
 	<div class="container">
+	<div class="container-fluid">
 	
 		<div class="row"  row-align="center">
 
-			<div class="col-md-4"></div>
+			<div class="col-md-1"></div>
 	
-			<div class="col" align="center">
-				<img src="logo11.png" class="img-Thumbnail" alt="Cinque Terre" > 
+			<div class="col" align="center" ><br>
+				<img src="logo.png" id="transparent" class="img-rounded" alt="loga" width="100%"> 
 
 			</div>
 
-			<div class="col-md-4"></div>
+			<div class="col-md-1"></div>
 
 		</div>
-	</div>
-
-	
-			<fieldset><p>
-				<div class="row" >
-					<div class="col-md-4 ">
-					</div>
-					<div class="col-md-4 " align="center">
-					<img src="logo.png" alt="Logo" class="img-responsive">
-					</div>
-				</div><p>
-			</fieldset>
+	</div><p>
 
 		<form action="" method="post" class="container-fluid">
 			<div class="col ;container-fluid">	
 				<fieldset >
 					<div class="row">
-						<div class="col-md-2 col-xs-2 col-sm-2 col-lg-2"></div>
-						<div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
-					<button class="btn btn-primary" type="button" onclick="location.href='Register.php'" name="register">Register New Member</button><p></p>
+						<div class="col-md-1 "></div>
+						<div class="col-md-1 ">
+					<button class="btn btn-danger" type="button" onclick="location.href='Register.php'" name="register" style="background-color:##DC143C">Register New Member</button><p></p>
 				</div>
 				<br>
 				</fieldset>
@@ -165,8 +159,8 @@ body {font-family: Verdana,sans-serif;}
 							 <label for="usr" class="text-white" >User Name :</label></div><div class="col">
 							<input type="text" name="username" id="username" placeholder="Username" class="form-control"></div>
 							<div class="col">
-							<select class="btn">
-								<option value="member" selected="selected">Member</option>
+							<select class="btn" style="background-color:#00FF00" >
+								<option value="member" selected="selected"  >Member</option>
 								<option value="officer">Officer</option>
 								<option value="admin">Administrator</option>
 							</select>
@@ -183,63 +177,63 @@ body {font-family: Verdana,sans-serif;}
 							<p></p>
 							<div class="row">
 							<div class="col-md-5"></div>
-							<input type="submit" name="login" id="login" value="Log in" disabled="disabled" class="col-md-2 btn "><br>
+							<input type="submit" name="login" id="login" value="Log in" disabled="disabled" class="col-md-2 btn btn-primary" style="background-color:" ><br>
 							</div>
 					</div>
 				</fieldset>
 			</div>
 			</form>
 		
-<div class="slideshow-container">
+				<div class="slideshow-container">
 
-<div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="s1-1.jpg" style="width:100%">
-  <div class="text">Caption Text</div>
-</div>
+				<div class="mySlides fade">
+				  
+				  <img src="s1-11.jpg" style="width:100%">
+				  
+				</div>
 
-<div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="s2-1.jpg" style="width:100%">
-  <div class="text">Caption Two</div>
-</div>
+				<div class="mySlides fade">
+				  
+				  <img src="s2-11.jpg" style="width:100%">
+				 
+				</div>
 
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="s3-1.jpg" style="width:100%">
-  <div class="text">Caption Three</div>
-</div>
+				<div class="mySlides fade">
+				  
+				  <img src="s3-11.jpg" style="width:100%">
+				  
+				</div>
 
-</div>
-<br>
+				</div>
+				<br>
 
-<div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-</div>
+				<div style="text-align:center">
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
+				</div>
+				</div>
+				<script>
+				var slideIndex = 0;
+				showSlides();
 
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 1500); // Change image every 2 seconds
-}
-</script>
+				function showSlides() {
+				    var i;
+				    var slides = document.getElementsByClassName("mySlides");
+				    var dots = document.getElementsByClassName("dot");
+				    for (i = 0; i < slides.length; i++) {
+				       slides[i].style.display = "none";  
+				    }
+				    slideIndex++;
+				    if (slideIndex > slides.length) {slideIndex = 1}    
+				    for (i = 0; i < dots.length; i++) {
+				        dots[i].className = dots[i].className.replace(" active", "");
+				    }
+				    slides[slideIndex-1].style.display = "block";  
+				    dots[slideIndex-1].className += " active";
+				    setTimeout(showSlides, 1500); // Change image every 2 seconds
+				}
+				</script>
 
 
 </body>
