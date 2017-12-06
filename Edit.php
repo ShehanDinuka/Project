@@ -30,12 +30,14 @@
 
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 </head>
 
@@ -56,9 +58,9 @@
 	
 		<p>
 		
-		<div class ="container"  style="background-color: 	#787878" >
-		<fieldset><div  class ="container"  style="background-color: 	#b4b4b4" ><h1>Personal Information</h1><hr /></div><p>
-		<p>
+		<div class ="container"  style="background-color:#787878">
+		<fieldset><div  class ="container-fluid"  style="background-color: #b4b4b4"><h1>Personal Information</h1><hr /></div>
+			<p>
 			<div  class="row"><div class="col-md-2">
 			<label for="fname" class="text-white" >First Name :*</label>
 			</div> <div class="col-md-4"> <input type="text" name="fname" id="fname" value="<?php if(isset($_POST['save'])){echo $_POST["fname"];}else{echo $final["fname"] ;}?>" placeholder="Enter your first name"  class="form-control"><br></div> <div class="col-md-4"><img alt="Your Photo"><p>
@@ -84,6 +86,7 @@
 		<p>
 		</fieldset>
 		</div>
+		<p>
 		
 		<div class ="container"   style="background-color: 	#787878"><p>
 		<fieldset><div   class ="container-fluid"  style="background-color: #b4b4b4"><h1 >Contact Details</h1><hr /></div>
