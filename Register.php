@@ -73,7 +73,7 @@
 		<p>
 		
 		<div class ="container"  style="background-color: 	#787878" >
-		<fieldset><div  class ="container"  style="background-color: 	#b4b4b4" ><h1>Personal Information</h1><hr /></div><p>
+		<fieldset><div  class ="container-fluid"  style="background-color: 	#b4b4b4" ><h1>Personal Information</h1><hr /></div><p>
 		<p>
 			<div  class="row"><div class="col-md-2">
 			<label for="fname" class="text-white" >First Name :*</label>
