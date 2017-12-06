@@ -6,9 +6,7 @@
 
 <html>
 <head>
-
 	<title>Registrar Profile</title>
-
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -26,7 +24,6 @@
 		<div class="container-fluid" style="background-color: 	#3C102E"">
 			
 			 <h4 align="center" class="text-white"><br><br>You have logged in as a Registrar</h4>
-
 			<br><br>
 			<div class="row">
 			<div class="col-md-4"></div>
@@ -92,15 +89,14 @@
 		while($results=mysqli_fetch_assoc($query_run)){
 			
 		$table .= "<tr class='table-active'><td><label class='lable'>{$results['reg_no']}</label></td><td><label class='label'>{$results['fname']}"."  "."{$results['lname']}</label></td><td>
-
 		<label class='label'><input type='radio' name='{$results['reg_no']}'  value='accept'>	Accept		 "."<input type='radio' name='{$results['reg_no']}'  value='reject'>	Reject 		"."<input type='radio' name='{$results['reg_no']}'  value='keep' checked>	Keep </label>"
-
+		
 		."</td></tr>";
 	
 		}
 		$table .= "</tbody></table></div><br><br>";
 		$table.='<div class="row"><div class="col-md-9"></div><div class="col-md-3"><input type="submit" class="btn btn-align-right " name="save" id="save" value="Save changers"  class =" col-md-2 col-md-offset-2"></div></div>';
-
+		//header("Refresh:0");
 		echo $table;
 		}
 	}
@@ -115,7 +111,8 @@
 		if(isset($_POST['save'])){
 			$db = new DB();
 			$query="SELECT * FROM requests where accepted=0";
-			$query_run=mysqli_query($db->getConnection(),$query);	
+			$query_run=mysqli_query($db->getConnection(),$query);
+			
 			
 			while($results=$query_run->fetch_assoc()){				
 				if (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="accept"){ 
@@ -138,12 +135,22 @@
 
 				}
 				elseif (isset($_POST[$results['reg_no']]) && $_POST[$results['reg_no']]=="keep"){}
+				
+				
 			}
+
+			
+			
 			
 		}
 
-?>
 
+
+
+
+
+
+?>
 			<script type='text/javascript'>
 
 			(function()
@@ -161,6 +168,7 @@
 			})();
 
 			</script>
+	
 	
 	</body>
 </html>

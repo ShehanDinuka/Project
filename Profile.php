@@ -75,7 +75,7 @@
 		</div></nav>
 		
 		<div class="container"  style="background-color: #0B8581 ;border:1px solid " >
-		<fieldset><div class="container"style="background-color:	#39E5E0">
+		<fieldset><div class="container-fluid"style="background-color:	#39E5E0">
 			<h1 >Personal Information</h1><p></div>
 			<div class="row"><div class="col-md-2">
 
@@ -92,7 +92,7 @@
 		</div><p>
 		
 		<div class="container" style="border:1px solid ;background-color:	#0B8581">
-		<fieldset><div  class="container"style="background-color:	#39E5E0">
+		<fieldset><div  class="container-fluid"style="background-color:	#39E5E0">
 			<h1>Contact Details</h1><p></div>
 			<div class="row"><div class="col-md-2">
 
@@ -105,7 +105,7 @@
 		</div><p>
 
 		<div class="container" style="border:1px solid ;background-color: 	#0B8581">
-		<fieldset><div  class="container"style="background-color:	#39E5E0">
+		<fieldset><div  class="container-fluid"style="background-color:	#39E5E0">
 			<h1>Performance</h1><p></div>
 			<div class="row"><div class="col-md-2">
 
